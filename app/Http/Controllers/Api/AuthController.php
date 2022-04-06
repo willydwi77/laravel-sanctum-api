@@ -22,7 +22,7 @@ class AuthController extends Controller
 
             if (Auth::attempt($credential)) {
                 $user = Auth::user();
-                $token = $user->createToken('auth-token')->accessToken;
+                $token = $user->createToken('auth-token')->plainTextToken;
                 
                 return $this->sendResponse($token);
             } else {
@@ -59,7 +59,7 @@ class AuthController extends Controller
             ]);
 
             if ($store) {
-                $token = $store->createToken('auth-token')->accessToken;
+                $token = $store->createToken('auth-token')->plainTextToken;
 
                 return $this->sendResponse($token);
             } else {
